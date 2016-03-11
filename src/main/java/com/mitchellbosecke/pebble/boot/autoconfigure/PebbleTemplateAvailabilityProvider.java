@@ -9,16 +9,17 @@ import org.springframework.util.ClassUtils;
 
 public class PebbleTemplateAvailabilityProvider implements TemplateAvailabilityProvider {
 
-	@Override
-	public boolean isTemplateAvailable(String view, Environment environment, ClassLoader classLoader, ResourceLoader resourceLoader) {
-		if (ClassUtils.isPresent("com.mitchellbosecke.pebble.PebbleEngine", classLoader)) {
-			PropertyResolver resolver = new RelaxedPropertyResolver(environment, "pebble.");
-			String prefix = resolver.getProperty("prefix", PebbleProperties.DEFAULT_PREFIX);
-			String suffix = resolver.getProperty("suffix", PebbleProperties.DEFAULT_SUFFIX);
-			return resourceLoader.getResource(prefix + view + suffix).exists();
-		} else {
-			return false;
-		}
-	}
+    @Override
+    public boolean isTemplateAvailable(String view, Environment environment, ClassLoader classLoader,
+            ResourceLoader resourceLoader) {
+        if (ClassUtils.isPresent("com.mitchellbosecke.pebble.PebbleEngine", classLoader)) {
+            PropertyResolver resolver = new RelaxedPropertyResolver(environment, "pebble.");
+            String prefix = resolver.getProperty("prefix", PebbleProperties.DEFAULT_PREFIX);
+            String suffix = resolver.getProperty("suffix", PebbleProperties.DEFAULT_SUFFIX);
+            return resourceLoader.getResource(prefix + view + suffix).exists();
+        } else {
+            return false;
+        }
+    }
 
 }

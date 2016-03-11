@@ -27,76 +27,76 @@ import com.mitchellbosecke.pebble.spring.PebbleViewResolver;
 @EnableConfigurationProperties(PebbleProperties.class)
 public class PebbleAutoConfiguration {
 
-	@Configuration
-	@ConditionalOnMissingBean(name="pebbleLoader")
-	public static class DefaultLoaderConfiguration {
+    @Configuration
+    @ConditionalOnMissingBean(name = "pebbleLoader")
+    public static class DefaultLoaderConfiguration {
 
-		@Autowired
-		private PebbleProperties properties;
+        @Autowired
+        private PebbleProperties properties;
 
-		@Bean
-		public Loader<?> pebbleLoader() {
-			ClasspathLoader loader = new ClasspathLoader();
-			loader.setCharset(properties.getEncoding().name());
-			return loader;
-		}
+        @Bean
+        public Loader<?> pebbleLoader() {
+            ClasspathLoader loader = new ClasspathLoader();
+            loader.setCharset(properties.getEncoding().name());
+            return loader;
+        }
 
-	}
+    }
 
-	@Configuration
-	@ConditionalOnMissingBean(PebbleEngine.class)
-	public static class PebbleDefaultConfiguration {
-		
-		@Autowired
-		private PebbleProperties properties;
-		
-		@Autowired
-		private Loader<?> pebbleLoader; 
-		
-		@Autowired(required = false)
-		private List<Extension> extensions;
-		
-		@Bean
-		public PebbleEngine pebbleTemplateEngine() {
-			PebbleEngine.Builder builder = new PebbleEngine.Builder();
-			builder.loader(pebbleLoader);
-			if (extensions != null && !extensions.isEmpty()) {
-				builder.extension(extensions.toArray(new Extension[extensions.size()]));
-			}
-			if (!properties.isCache()) {
-				builder.templateCache(null);
-				builder.tagCache(null);
-			}
-			return builder.build();
-		}
+    @Configuration
+    @ConditionalOnMissingBean(PebbleEngine.class)
+    public static class PebbleDefaultConfiguration {
 
-	}
+        @Autowired
+        private PebbleProperties properties;
 
-	@Configuration
-	@ConditionalOnWebApplication
-	@ConditionalOnClass({ Servlet.class })
-	public static class PebbleViewResolverConfiguration {
-		
-		@Autowired
-		private PebbleProperties properties;
+        @Autowired
+        private Loader<?> pebbleLoader;
 
-		@Autowired
-		private PebbleEngine pebbleTemplateEngine;
-		
-		@Bean
-		@ConditionalOnMissingBean(name="pebbleViewResolver")
-		public PebbleViewResolver pebbleViewResolver() {
-			PebbleViewResolver pvr = new PebbleViewResolver();
-			pvr.setPebbleEngine(pebbleTemplateEngine);
-			pvr.setPrefix(properties.getPrefix());
-			pvr.setSuffix(properties.getSuffix());
-			
-			pvr.setContentType(properties.getContentType().toString());
-			pvr.setOrder(Ordered.LOWEST_PRECEDENCE - 5);
+        @Autowired(required = false)
+        private List<Extension> extensions;
 
-			return pvr;
-		}
+        @Bean
+        public PebbleEngine pebbleTemplateEngine() {
+            PebbleEngine.Builder builder = new PebbleEngine.Builder();
+            builder.loader(pebbleLoader);
+            if (extensions != null && !extensions.isEmpty()) {
+                builder.extension(extensions.toArray(new Extension[extensions.size()]));
+            }
+            if (!properties.isCache()) {
+                builder.templateCache(null);
+                builder.tagCache(null);
+            }
+            return builder.build();
+        }
 
-	}
+    }
+
+    @Configuration
+    @ConditionalOnWebApplication
+    @ConditionalOnClass({ Servlet.class })
+    public static class PebbleViewResolverConfiguration {
+
+        @Autowired
+        private PebbleProperties properties;
+
+        @Autowired
+        private PebbleEngine pebbleTemplateEngine;
+
+        @Bean
+        @ConditionalOnMissingBean(name = "pebbleViewResolver")
+        public PebbleViewResolver pebbleViewResolver() {
+            PebbleViewResolver pvr = new PebbleViewResolver();
+            pvr.setPebbleEngine(pebbleTemplateEngine);
+            pvr.setPrefix(properties.getPrefix());
+            pvr.setSuffix(properties.getSuffix());
+
+            pvr.setContentType(properties.getContentType().toString());
+            pvr.setOrder(Ordered.LOWEST_PRECEDENCE - 5);
+
+            return pvr;
+        }
+
+    }
 
 }
