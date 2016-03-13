@@ -57,7 +57,7 @@ public class PebbleAutoConfiguration {
         private List<Extension> extensions;
 
         @Bean
-        public PebbleEngine pebbleTemplateEngine() {
+        public PebbleEngine pebbleEngine() {
             PebbleEngine.Builder builder = new PebbleEngine.Builder();
             builder.loader(pebbleLoader);
             if (extensions != null && !extensions.isEmpty()) {
@@ -81,13 +81,13 @@ public class PebbleAutoConfiguration {
         private PebbleProperties properties;
 
         @Autowired
-        private PebbleEngine pebbleTemplateEngine;
+        private PebbleEngine pebbleEngine;
 
         @Bean
         @ConditionalOnMissingBean(name = "pebbleViewResolver")
         public PebbleViewResolver pebbleViewResolver() {
             PebbleViewResolver pvr = new PebbleViewResolver();
-            pvr.setPebbleEngine(pebbleTemplateEngine);
+            pvr.setPebbleEngine(pebbleEngine);
             pvr.setPrefix(properties.getPrefix());
             pvr.setSuffix(properties.getSuffix());
 
