@@ -44,7 +44,7 @@ public class PebbleAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnMissingBean(PebbleEngine.class)
+    @ConditionalOnMissingBean(name = "pebbleEngine")
     public static class PebbleDefaultConfiguration {
 
         @Autowired
@@ -92,6 +92,7 @@ public class PebbleAutoConfiguration {
             pvr.setSuffix(properties.getSuffix());
 
             pvr.setContentType(properties.getContentType().toString());
+            pvr.setCharacterEncoding(properties.getEncoding().name());
             pvr.setOrder(Ordered.LOWEST_PRECEDENCE - 5);
 
             return pvr;
