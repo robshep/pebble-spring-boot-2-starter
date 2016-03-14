@@ -12,7 +12,7 @@ public class PebbleProperties {
 
     private static final MimeType DEFAULT_CONTENT_TYPE = MimeType.valueOf("text/html");
 
-    public static final String DEFAULT_PREFIX = "templates/";
+    public static final String DEFAULT_PREFIX = "/templates/";
 
     public static final String DEFAULT_SUFFIX = ".pebble";
 
