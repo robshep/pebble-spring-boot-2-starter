@@ -1,3 +1,3 @@
-## v1.3.0 (unreleased)
-Works with Spring Boot 1.3.0+
+## v2.2.0 (unreleased)
+Tested with Spring Boot 1.2.1 & 1.3.3
 - Initial project features
