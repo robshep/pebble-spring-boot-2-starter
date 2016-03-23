@@ -88,10 +88,11 @@ public class PebbleAutoConfiguration {
         public PebbleViewResolver pebbleViewResolver() {
             PebbleViewResolver pvr = new PebbleViewResolver();
             pvr.setPebbleEngine(pebbleEngine);
-            
+
             // classpath loader does not like trailing / in resource paths
             String prefix = properties.getPrefix();
-            if (prefix.startsWith("/")) prefix = prefix.substring(1);
+            if (prefix.startsWith("/"))
+                prefix = prefix.substring(1);
             pvr.setPrefix(prefix);
             pvr.setSuffix(properties.getSuffix());
 
