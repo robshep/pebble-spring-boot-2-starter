@@ -1,10 +1,9 @@
-package com.mitchellbosecke.pebble.boot.test;
+package com.mitchellbosecke.pebble.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 
-@SpringBootApplication(scanBasePackages = { "com.mitchellbosecke.pebble.boot" })
+@SpringBootApplication
 @ServletComponentScan
 public class Application {
 

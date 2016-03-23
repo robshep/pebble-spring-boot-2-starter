@@ -1,4 +1,4 @@
-package com.mitchellbosecke.pebble.boot.test;
+package com.mitchellbosecke.pebble.boot;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

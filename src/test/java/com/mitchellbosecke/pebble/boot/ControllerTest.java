@@ -1,4 +1,4 @@
-package com.mitchellbosecke.pebble.boot.test;
+package com.mitchellbosecke.pebble.boot;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+@SpringApplicationConfiguration(classes=Application.class)
 @WebIntegrationTest(randomPort = true)
 public class ControllerTest {
 
