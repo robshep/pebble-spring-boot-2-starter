@@ -9,7 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mitchellbosecke</groupId>
 	<artifactId>pebble-spring-boot-starter</artifactId>
-	<version>2.2.2-SNAPSHOT</version>
+	<version>2.2.1-SNAPSHOT</version>
 
 	<name>Pebble Spring Boot Starter</name>
 	<description>Spring Boot starter for Pebble Template Engine</description>
@@ -18,8 +18,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<boot.version>1.2.1.RELEASE</boot.version>
-		<pebble.version>2.2.0</pebble.version>
-		<pebble-spring.version>2.2.0</pebble-spring.version>
+		<pebble.version>2.2.1</pebble.version>
+		<pebble-spring.version>2.2.1</pebble-spring.version>
 	</properties>
 
 	<licenses>
