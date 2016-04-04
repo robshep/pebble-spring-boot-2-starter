@@ -4,6 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Locale;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +48,20 @@ public class ControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML)).andReturn();
         Assert.assertEquals("ctx path:" + result.getRequest().getContextPath(),
                 result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testEnglishHello() throws Exception {
+        mockMvc.perform(get("/hello.action").locale(Locale.forLanguageTag("en"))).andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(content().string("Hello Boot!"));
+    }
+
+    @Test
+    public void testSpanishHello() throws Exception {
+        mockMvc.perform(get("/hello.action").locale(Locale.forLanguageTag("es"))).andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(content().string("Hola Boot!"));
     }
 
 }

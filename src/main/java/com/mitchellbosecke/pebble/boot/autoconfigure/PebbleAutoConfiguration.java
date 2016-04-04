@@ -19,7 +19,8 @@ import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.extension.Extension;
 import com.mitchellbosecke.pebble.loader.ClasspathLoader;
 import com.mitchellbosecke.pebble.loader.Loader;
-import com.mitchellbosecke.pebble.spring.PebbleViewResolver;
+import com.mitchellbosecke.pebble.spring4.PebbleViewResolver;
+import com.mitchellbosecke.pebble.spring4.extension.SpringExtension;
 
 @Configuration
 @ConditionalOnClass(PebbleEngine.class)
@@ -55,6 +56,11 @@ public class PebbleAutoConfiguration {
 
         @Autowired(required = false)
         private List<Extension> extensions;
+        
+        @Bean
+        public Extension pebbleSpringExtension() {
+            return new SpringExtension();
+        }
 
         @Bean
         public PebbleEngine pebbleEngine() {
@@ -89,7 +95,7 @@ public class PebbleAutoConfiguration {
             PebbleViewResolver pvr = new PebbleViewResolver();
             pvr.setPebbleEngine(pebbleEngine);
 
-            // classpath loader does not like trailing / in resource paths
+            // classpath loader does not like leading slashes in resource paths
             String prefix = properties.getPrefix();
             if (prefix.startsWith("/"))
                 prefix = prefix.substring(1);
