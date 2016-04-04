@@ -18,7 +18,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<boot.version>1.2.1.RELEASE</boot.version>
-		<pebble.version>2.2.1</pebble.version>
 		<pebble-spring.version>2.2.1</pebble-spring.version>
 	</properties>
 
@@ -116,11 +115,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${boot.version}</version>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.mitchellbosecke</groupId>
-			<artifactId>pebble</artifactId>
-			<version>${pebble.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mitchellbosecke</groupId>
