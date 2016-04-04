@@ -25,9 +25,10 @@ PLEASE NOTE: the starter depends on ``spring-boot-starter-web`` but is marked as
 
 ##Compatibility matrix
 Pebble vs tested Boot versions (may work on older Boot releases).
-|Pebble Boot Starter|Spring Boot|
-|---|---|
-|2.2.0+|1.2.1+|
+
+| Pebble Boot Starter | Spring Boot |
+| --- | --- |
+| 2.2.0+ | 1.2.1+ |
 
 ##Boot externalized configuration
 A number of properties can be defined in Spring Boot externalized configuration, eg. ``application.properties``, starting with the prefix ``pebble``. See the corresponding [PebbleProperties.java](https://github.com/PebbleTemplates/pebble-spring-boot-starter/blob/master/src/main/java/com/mitchellbosecke/pebble/boot/autoconfigure/PebbleProperties.java) for your starter version. Notable properties are:
