@@ -61,7 +61,7 @@ public Loader<?> pebbleLoader() {
    return new MyCustomLoader();
 }
 ```
-PLEASE NOTE: this loader's prefix and suffix will be both overwritten when the ViewResolver is configured. You should use the externalized configuration for changing this properties.
+PLEASE NOTE: this loader's prefix and suffix will be both overwritten when the ViewResolver is configured. You should use the externalized configuration for changing these properties.
 
 ###Customizing the PebbleEngine
 Likewise, you can build a custom engine and make it the default by using the bean name ``pebbleEngine``:
