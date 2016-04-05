@@ -1,6 +1,8 @@
 #Pebble Spring Boot Starter
 Spring Boot starter for autoconfiguring Pebble as an MVC ViewResolver.
 
+![Continuous Integration](https://travis-ci.org/PebbleTemplates/pebble-spring-boot-starter.svg?branch=master)
+
 ##Basic Usage
 Add the starter dependency to your pom.xml:
 ```XML
