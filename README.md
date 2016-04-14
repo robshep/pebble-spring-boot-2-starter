@@ -45,10 +45,12 @@ A number of properties can be defined in Spring Boot externalized configuration,
 ###Pebble extensions
 Extensions defined as beans will be picked up and added to the PebbleEngine automatically:
 ```Java
+@Bean
 public Extension myPebbleExtension1() {
    return new MyPebbleExtension1();
 }
 
+@Bean
 public Extension myPebbleExtension2() {
    return new MyPebbleExtension2();
 }
@@ -57,6 +59,7 @@ public Extension myPebbleExtension2() {
 ###Customizing the Loader
 The autoconfigurer looks for a bean named ``pebbleLoader`` in the context. You can define a custom loader with that name and it will be used to configure the default PebbleEngine:
 ```Java
+@Bean
 public Loader<?> pebbleLoader() {
    return new MyCustomLoader();
 }
@@ -66,6 +69,7 @@ PLEASE NOTE: this loader's prefix and suffix will be both overwritten when the V
 ###Customizing the PebbleEngine
 Likewise, you can build a custom engine and make it the default by using the bean name ``pebbleEngine``:
 ```Java
+@Bean
 public PebbleEngine pebbleEngine() {
    return new PebbleEngine.Builder().build();
 }
@@ -74,10 +78,12 @@ public PebbleEngine pebbleEngine() {
 ###Customizing the ViewResolver
 And the same goes for the ViewResolver, using the bean name ``pebbleViewResolver``: 
 ```Java
+@Bean
 public PebbleViewResolver pebbleViewResolver() {
    return new PebbleViewResolver();
 }
 ```
+PLEASE NOTE: you need to change the Loader's prefix and suffix to match the custom ViewResolver's values.
 
 ###Using Pebble for other tasks
 The main role of this starter is to configure Pebble for generating MVC View results (the typical HTML). You may define more PebbleEngine/Loader beans for other usage patterns (like generating email bodies). Bear in mind that you should not reuse the default Loader for other Engine instances.
