@@ -70,8 +70,7 @@ public class PebbleAutoConfiguration {
                 builder.extension(extensions.toArray(new Extension[extensions.size()]));
             }
             if (!properties.isCache()) {
-                builder.templateCache(null);
-                builder.tagCache(null);
+                builder.cacheActive(false);
             }
             return builder.build();
         }
