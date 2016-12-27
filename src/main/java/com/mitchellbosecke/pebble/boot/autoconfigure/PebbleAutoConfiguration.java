@@ -56,9 +56,9 @@ public class PebbleAutoConfiguration {
 
         @Autowired(required = false)
         private List<Extension> extensions;
-        
+
         @Bean
-        public Extension pebbleSpringExtension() {
+        public SpringExtension pebbleSpringExtension() {
             return new SpringExtension();
         }
 
@@ -66,6 +66,7 @@ public class PebbleAutoConfiguration {
         public PebbleEngine pebbleEngine() {
             PebbleEngine.Builder builder = new PebbleEngine.Builder();
             builder.loader(pebbleLoader);
+            builder.extension(pebbleSpringExtension());
             if (extensions != null && !extensions.isEmpty()) {
                 builder.extension(extensions.toArray(new Extension[extensions.size()]));
             }

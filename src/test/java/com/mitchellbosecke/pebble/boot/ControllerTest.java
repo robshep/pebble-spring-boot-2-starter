@@ -64,4 +64,11 @@ public class ControllerTest {
                 .andExpect(content().string("Hola Boot!"));
     }
 
+    @Test
+    public void testAdditionalExtensions() throws Exception {
+        mockMvc.perform(get("/extensions.action").locale(Locale.forLanguageTag("es"))).andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(content().string("Hola Boot! Tested!"));
+    }
+
 }
