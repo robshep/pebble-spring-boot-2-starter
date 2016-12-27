@@ -55,6 +55,7 @@ public Extension myPebbleExtension2() {
    return new MyPebbleExtension2();
 }
 ```
+CAVEAT: Spring will not gather beans if they're scattered across multiple @Configuration classes. If you use this mechanism, bundle all Extension @Beans in a single @Configuration class.
 
 ###Customizing the Loader
 The autoconfigurer looks for a bean named ``pebbleLoader`` in the context. You can define a custom loader with that name and it will be used to configure the default PebbleEngine:
