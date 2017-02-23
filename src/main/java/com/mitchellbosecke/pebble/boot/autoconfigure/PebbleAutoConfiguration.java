@@ -1,8 +1,11 @@
 package com.mitchellbosecke.pebble.boot.autoconfigure;
 
-import java.util.List;
-
-import javax.servlet.Servlet;
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.extension.Extension;
+import com.mitchellbosecke.pebble.loader.ClasspathLoader;
+import com.mitchellbosecke.pebble.loader.Loader;
+import com.mitchellbosecke.pebble.spring4.PebbleViewResolver;
+import com.mitchellbosecke.pebble.spring4.extension.SpringExtension;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -15,12 +18,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
-import com.mitchellbosecke.pebble.PebbleEngine;
-import com.mitchellbosecke.pebble.extension.Extension;
-import com.mitchellbosecke.pebble.loader.ClasspathLoader;
-import com.mitchellbosecke.pebble.loader.Loader;
-import com.mitchellbosecke.pebble.spring4.PebbleViewResolver;
-import com.mitchellbosecke.pebble.spring4.extension.SpringExtension;
+import java.util.List;
+
+import javax.servlet.Servlet;
 
 @Configuration
 @ConditionalOnClass(PebbleEngine.class)
@@ -38,7 +38,7 @@ public class PebbleAutoConfiguration {
         @Bean
         public Loader<?> pebbleLoader() {
             ClasspathLoader loader = new ClasspathLoader();
-            loader.setCharset(properties.getEncoding().name());
+            loader.setCharset(this.properties.getEncoding().name());
             return loader;
         }
 
@@ -65,17 +65,19 @@ public class PebbleAutoConfiguration {
         @Bean
         public PebbleEngine pebbleEngine() {
             PebbleEngine.Builder builder = new PebbleEngine.Builder();
-            builder.loader(pebbleLoader);
-            builder.extension(pebbleSpringExtension());
-            if (extensions != null && !extensions.isEmpty()) {
-                builder.extension(extensions.toArray(new Extension[extensions.size()]));
+            builder.loader(this.pebbleLoader);
+            builder.extension(this.pebbleSpringExtension());
+            if (this.extensions != null && !this.extensions.isEmpty()) {
+                builder.extension(this.extensions.toArray(new Extension[this.extensions.size()]));
             }
-            if (!properties.isCache()) {
+            if (!this.properties.isCache()) {
                 builder.cacheActive(false);
+            }
+            if (this.properties.getDefaultLocale() != null) {
+                builder.defaultLocale(this.properties.getDefaultLocale());
             }
             return builder.build();
         }
-
     }
 
     @Configuration
@@ -93,22 +95,22 @@ public class PebbleAutoConfiguration {
         @ConditionalOnMissingBean(name = "pebbleViewResolver")
         public PebbleViewResolver pebbleViewResolver() {
             PebbleViewResolver pvr = new PebbleViewResolver();
-            pvr.setPebbleEngine(pebbleEngine);
+            pvr.setPebbleEngine(this.pebbleEngine);
 
             // classpath loader does not like leading slashes in resource paths
-            String prefix = properties.getPrefix();
+            String prefix = this.properties.getPrefix();
             if (prefix.startsWith("/"))
                 prefix = prefix.substring(1);
             pvr.setPrefix(prefix);
-            pvr.setSuffix(properties.getSuffix());
+            pvr.setSuffix(this.properties.getSuffix());
 
-            pvr.setContentType(properties.getContentType().toString());
-            pvr.setCharacterEncoding(properties.getEncoding().name());
+            pvr.setContentType(this.properties.getContentType().toString());
+            pvr.setCharacterEncoding(this.properties.getEncoding().name());
             pvr.setOrder(Ordered.LOWEST_PRECEDENCE - 5);
+            pvr.setExposeRequestAttributes(this.properties.isExposeRequestAttributes());
+            pvr.setExposeSessionAttributes(this.properties.isExposeSessionAttributes());
 
             return pvr;
         }
-
     }
-
 }

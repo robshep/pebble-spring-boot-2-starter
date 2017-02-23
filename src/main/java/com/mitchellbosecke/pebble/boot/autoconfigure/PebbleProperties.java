@@ -1,9 +1,10 @@
 package com.mitchellbosecke.pebble.boot.autoconfigure;
 
-import java.nio.charset.Charset;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.MimeType;
+
+import java.nio.charset.Charset;
+import java.util.Locale;
 
 @ConfigurationProperties("pebble")
 public class PebbleProperties {
@@ -26,8 +27,14 @@ public class PebbleProperties {
 
     private boolean cache = true;
 
+    private boolean exposeRequestAttributes;
+
+    private boolean exposeSessionAttributes;
+
+    private Locale defaultLocale;
+
     public String getPrefix() {
-        return prefix;
+        return this.prefix;
     }
 
     public void setPrefix(String prefix) {
@@ -35,7 +42,7 @@ public class PebbleProperties {
     }
 
     public String getSuffix() {
-        return suffix;
+        return this.suffix;
     }
 
     public void setSuffix(String suffix) {
@@ -43,7 +50,7 @@ public class PebbleProperties {
     }
 
     public Charset getEncoding() {
-        return encoding;
+        return this.encoding;
     }
 
     public void setEncoding(Charset encoding) {
@@ -51,7 +58,7 @@ public class PebbleProperties {
     }
 
     public MimeType getContentType() {
-        return contentType;
+        return this.contentType;
     }
 
     public void setContentType(MimeType contentType) {
@@ -59,11 +66,34 @@ public class PebbleProperties {
     }
 
     public boolean isCache() {
-        return cache;
+        return this.cache;
     }
 
     public void setCache(boolean cache) {
         this.cache = cache;
     }
 
+    public boolean isExposeRequestAttributes() {
+        return this.exposeRequestAttributes;
+    }
+
+    public void setExposeRequestAttributes(boolean exposeRequestAttributes) {
+        this.exposeRequestAttributes = exposeRequestAttributes;
+    }
+
+    public boolean isExposeSessionAttributes() {
+      return this.exposeSessionAttributes;
+    }
+
+    public void setExposeSessionAttributes(boolean exposeSessionAttributes) {
+        this.exposeSessionAttributes = exposeSessionAttributes;
+    }
+
+    public Locale getDefaultLocale() {
+        return this.defaultLocale;
+    }
+
+    public void setDefaultLocale(Locale defaultLocale) {
+        this.defaultLocale = defaultLocale;
+    }
 }
