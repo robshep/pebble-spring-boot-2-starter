@@ -39,6 +39,9 @@ public class PebbleAutoConfiguration {
         public Loader<?> pebbleLoader() {
             ClasspathLoader loader = new ClasspathLoader();
             loader.setCharset(this.properties.getEncoding().name());
+            // classpath loader does not like leading slashes in resource paths
+            loader.setPrefix(stripLeadingSlash(this.properties.getPrefix()));
+            loader.setSuffix(this.properties.getSuffix());
             return loader;
         }
 
@@ -97,10 +100,11 @@ public class PebbleAutoConfiguration {
             PebbleViewResolver pvr = new PebbleViewResolver();
             pvr.setPebbleEngine(this.pebbleEngine);
 
-            // classpath loader does not like leading slashes in resource paths
             String prefix = this.properties.getPrefix();
-            if (prefix.startsWith("/"))
-                prefix = prefix.substring(1);
+            if (this.pebbleEngine.getLoader() instanceof ClasspathLoader) {
+                // classpathloader doesn't like leading slashes in paths
+                prefix = stripLeadingSlash(prefix);
+            }
             pvr.setPrefix(prefix);
             pvr.setSuffix(this.properties.getSuffix());
 
@@ -113,4 +117,13 @@ public class PebbleAutoConfiguration {
             return pvr;
         }
     }
+
+    private static String stripLeadingSlash(String value) {
+        if (value == null)
+            return null;
+        if (value.startsWith("/"))
+            return value.substring(1);
+        return value;
+    }
+
 }

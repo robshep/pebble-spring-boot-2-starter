@@ -15,13 +15,13 @@ import com.mitchellbosecke.pebble.PebbleEngine;
 @SpringApplicationConfiguration(classes = NonWebApplication.class)
 public class CoreTests {
 
-	@Autowired
-	private PebbleEngine pebbleEngine;
+    @Autowired
+    private PebbleEngine pebbleEngine;
 
     @Test
     public void testOk() throws Exception {
-    	StringWriter sw = new StringWriter();
-        pebbleEngine.getTemplate("templates/hello.pebble").evaluate(sw);
+        StringWriter sw = new StringWriter();
+        pebbleEngine.getTemplate("hello").evaluate(sw);
         Assert.assertTrue(sw.toString() != null && !sw.toString().isEmpty());
     }
 
