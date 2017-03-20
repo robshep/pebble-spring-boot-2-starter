@@ -11,8 +11,8 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 public class NonWebApplication {
 
     public static void main(String[] args) {
-    	SpringApplication sa = new SpringApplicationBuilder(NonWebApplication.class).web(false).build();
-    	sa.run(args);
+        SpringApplication sa = new SpringApplicationBuilder(NonWebApplication.class).web(false).build();
+        sa.run(args);
     }
 
     @Bean

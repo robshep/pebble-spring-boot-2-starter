@@ -82,7 +82,7 @@ public class PebbleProperties {
     }
 
     public boolean isExposeSessionAttributes() {
-      return this.exposeSessionAttributes;
+        return this.exposeSessionAttributes;
     }
 
     public void setExposeSessionAttributes(boolean exposeSessionAttributes) {
@@ -96,4 +96,5 @@ public class PebbleProperties {
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
     }
+
 }
