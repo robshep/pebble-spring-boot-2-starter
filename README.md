@@ -1,9 +1,9 @@
-#Pebble Spring Boot Starter
+# Pebble Spring Boot Starter
 Spring Boot starter for autoconfiguring Pebble as an MVC ViewResolver.
 
 ![Continuous Integration](https://travis-ci.org/PebbleTemplates/pebble-spring-boot-starter.svg?branch=master)
 
-##Basic Usage
+## Basic Usage
 Add the starter dependency to your pom.xml:
 ```XML
 <dependency>
@@ -25,14 +25,14 @@ This is enough for autoconfiguration to kick in. This includes:
 
 PLEASE NOTE: the starter depends on ``spring-boot-starter-web`` but is marked as optional, you'll need to add the dependency yourself or configure Spring MVC appropiately.
 
-##Compatibility matrix
+## Compatibility matrix
 Pebble vs tested Boot versions (may work on older Boot releases).
 
 | Pebble Boot Starter | Spring Boot |
 | --- | --- |
 | 2.2.0+ | 1.2.1+ |
 
-##Boot externalized configuration
+## Boot externalized configuration
 A number of properties can be defined in Spring Boot externalized configuration, eg. ``application.properties``, starting with the prefix ``pebble``. See the corresponding [PebbleProperties.java](https://github.com/PebbleTemplates/pebble-spring-boot-starter/blob/master/src/main/java/com/mitchellbosecke/pebble/boot/autoconfigure/PebbleProperties.java) for your starter version. Notable properties are:
 
 * ``pebble.prefix``: defines the prefix that will be prepended to the mvc view name. Defaults to ``/templates/``
@@ -44,8 +44,8 @@ A number of properties can be defined in Spring Boot externalized configuration,
 * ``pebble.exposeSessionAttributes``: defines whether all session attributes should be added to the model prior to merging with the template for the ViewResolver. Defaults to ``false``
 * ``pebble.defaultLocale``: defines the default locale that will be used to configure the PebbleEngine. Defaults to ``null``
 
-##Customizing Pebble
-###Pebble extensions
+## Customizing Pebble
+### Pebble extensions
 Extensions defined as beans will be picked up and added to the PebbleEngine automatically:
 ```Java
 @Bean
@@ -60,7 +60,7 @@ public Extension myPebbleExtension2() {
 ```
 CAVEAT: Spring will not gather all the beans if they're scattered across multiple @Configuration classes. If you use this mechanism, bundle all Extension @Beans in a single @Configuration class.
 
-###Customizing the Loader
+### Customizing the Loader
 The autoconfigurer looks for a bean named ``pebbleLoader`` in the context. You can define a custom loader with that name and it will be used to configure the default PebbleEngine:
 ```Java
 @Bean
@@ -70,7 +70,7 @@ public Loader<?> pebbleLoader() {
 ```
 PLEASE NOTE: this loader's prefix and suffix will be both overwritten when the ViewResolver is configured. You should use the externalized configuration for changing these properties.
 
-###Customizing the PebbleEngine
+### Customizing the PebbleEngine
 Likewise, you can build a custom engine and make it the default by using the bean name ``pebbleEngine``:
 ```Java
 @Bean
@@ -79,7 +79,7 @@ public PebbleEngine pebbleEngine() {
 }
 ```
 
-###Customizing the ViewResolver
+### Customizing the ViewResolver
 And the same goes for the ViewResolver, using the bean name ``pebbleViewResolver``: 
 ```Java
 @Bean
@@ -89,5 +89,5 @@ public PebbleViewResolver pebbleViewResolver() {
 ```
 PLEASE NOTE: you need to change the Loader's prefix and suffix to match the custom ViewResolver's values.
 
-###Using Pebble for other tasks
+### Using Pebble for other tasks
 The main role of this starter is to configure Pebble for generating MVC View results (the typical HTML). You may define more PebbleEngine/Loader beans for other usage patterns (like generating email bodies). Bear in mind that you should not reuse the default Loader for other Engine instances.
