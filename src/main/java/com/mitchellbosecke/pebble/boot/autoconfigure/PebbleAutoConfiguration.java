@@ -79,6 +79,7 @@ public class PebbleAutoConfiguration {
             if (this.properties.getDefaultLocale() != null) {
                 builder.defaultLocale(this.properties.getDefaultLocale());
             }
+            builder.strictVariables(this.properties.isStrictVariables());
             return builder.build();
         }
     }
