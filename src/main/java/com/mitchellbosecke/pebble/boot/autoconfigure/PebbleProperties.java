@@ -33,6 +33,8 @@ public class PebbleProperties {
 
     private Locale defaultLocale;
 
+    private boolean strictVariables = false;
+
     public String getPrefix() {
         return this.prefix;
     }
@@ -97,4 +99,11 @@ public class PebbleProperties {
         this.defaultLocale = defaultLocale;
     }
 
+    public boolean isStrictVariables() {
+        return strictVariables;
+    }
+
+    public void setStrictVariables(boolean strictVariables) {
+        this.strictVariables = strictVariables;
+    }
 }
