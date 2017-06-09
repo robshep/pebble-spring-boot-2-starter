@@ -43,6 +43,7 @@ A number of properties can be defined in Spring Boot externalized configuration,
 * ``pebble.exposeRequestAttributes``: defines whether all request attributes should be added to the model prior to merging with the template for the ViewResolver. Defaults to ``false``
 * ``pebble.exposeSessionAttributes``: defines whether all session attributes should be added to the model prior to merging with the template for the ViewResolver. Defaults to ``false``
 * ``pebble.defaultLocale``: defines the default locale that will be used to configure the PebbleEngine. Defaults to ``null``
+* ``pebble.strictVariables``: enable or disable the strict variable checking in the PebbleEngine. Defaults to ``false``
 
 ## Customizing Pebble
 ### Pebble extensions
