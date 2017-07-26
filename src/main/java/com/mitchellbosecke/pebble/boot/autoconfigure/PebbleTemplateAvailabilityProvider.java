@@ -16,7 +16,7 @@ public class PebbleTemplateAvailabilityProvider implements TemplateAvailabilityP
             PropertyResolver resolver = new RelaxedPropertyResolver(environment, "pebble.");
             String prefix = resolver.getProperty("prefix", PebbleProperties.DEFAULT_PREFIX);
             String suffix = resolver.getProperty("suffix", PebbleProperties.DEFAULT_SUFFIX);
-            return resourceLoader.getResource(prefix + view + suffix).exists();
+            return resourceLoader.getResource(ResourceLoader.CLASSPATH_URL_PREFIX + prefix + view + suffix).exists();
         } else {
             return false;
         }
