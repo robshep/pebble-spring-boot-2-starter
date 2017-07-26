@@ -39,7 +39,7 @@ A number of properties can be defined in Spring Boot externalized configuration,
 * ``pebble.suffix``: defines the suffix that will be appended to the mvc view name. Defaults to ``.pebble``
 * ``pebble.cache``: enables or disables PebbleEngine caches. Defaults to ``true``
 * ``pebble.contentType``: defines the content type that will be used to configure the ViewResolver. Defaults to ``text/html``
-* ``pebble.encoding``: defines the text enconding that will be used to configure the ViewResolver. Defaults to ``UTF-8``
+* ``pebble.encoding``: defines the text encoding that will be used to configure the ViewResolver. Defaults to ``UTF-8``
 * ``pebble.exposeRequestAttributes``: defines whether all request attributes should be added to the model prior to merging with the template for the ViewResolver. Defaults to ``false``
 * ``pebble.exposeSessionAttributes``: defines whether all session attributes should be added to the model prior to merging with the template for the ViewResolver. Defaults to ``false``
 * ``pebble.defaultLocale``: defines the default locale that will be used to configure the PebbleEngine. Defaults to ``null``
