@@ -1,5 +1,5 @@
 # Pebble Spring Boot Starter
-Spring Boot starter for autoconfiguring Pebble as an MVC ViewResolver.
+Spring Boot (v2+) starter for autoconfiguring Pebble as an MVC ViewResolver.
 
 ![Continuous Integration](https://travis-ci.org/PebbleTemplates/pebble-spring-boot-starter.svg?branch=master)
 
@@ -8,13 +8,13 @@ Add the starter dependency to your pom.xml:
 ```XML
 <dependency>
 	<groupId>com.mitchellbosecke</groupId>
-	<artifactId>pebble-spring-boot-starter</artifactId>
+	<artifactId>pebble-spring-boot-2-starter</artifactId>
 	<version>${version}</version>
 </dependency>
 ```
 Or build.gradle:
 ```Gradle
-compile "com.mitchellbosecke:pebble-spring-boot-starter:$version"
+compile "com.mitchellbosecke:pebble-spring-boot-2-starter:$version"
 ```
 
 This is enough for autoconfiguration to kick in. This includes:
@@ -28,9 +28,10 @@ PLEASE NOTE: the starter depends on ``spring-boot-starter-web`` but is marked as
 ## Compatibility matrix
 Pebble vs tested Boot versions (may work on older Boot releases).
 
-| Pebble Boot Starter | Spring Boot |
-| --- | --- |
-| 2.2.0+ | 1.2.1+ |
+| Pebble Boot Starter | Version | Spring Boot Version |
+| --- | --- | --- |
+| pebble-spring-boot-starter | 2.2.0+ | 1.2.1+ |
+| pebble-spring-boot-2-starter | 2.4.1+ | 2.0.0.RC2+ |
 
 ## Boot externalized configuration
 A number of properties can be defined in Spring Boot externalized configuration, eg. ``application.properties``, starting with the prefix ``pebble``. See the corresponding [PebbleProperties.java](https://github.com/PebbleTemplates/pebble-spring-boot-starter/blob/master/src/main/java/com/mitchellbosecke/pebble/boot/autoconfigure/PebbleProperties.java) for your starter version. Notable properties are:
