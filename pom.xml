@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mitchellbosecke</groupId>
 	<artifactId>pebble-spring-boot-2-starter</artifactId>
-	<version>2.4.1rgs-SNAPSHOT</version>
+	<version>2.4.1-SNAPSHOT</version>
 
 	<name>Pebble Spring Boot (v2) Starter</name>
 	<description>Spring Boot (v2) starter for Pebble Template Engine</description>
