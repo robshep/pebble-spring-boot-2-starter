@@ -1,23 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mitchellbosecke</groupId>
-	<artifactId>pebble-spring-boot-starter</artifactId>
+	<artifactId>pebble-spring-boot-2-starter</artifactId>
 	<version>2.4.1rgs-SNAPSHOT</version>
 
-	<name>Pebble Spring Boot Starter</name>
-	<description>Spring Boot starter for Pebble Template Engine</description>
+	<name>Pebble Spring Boot (v2) Starter</name>
+	<description>Spring Boot (v2) starter for Pebble Template Engine</description>
 	<url>http://www.mitchellbosecke.com/pebble</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<boot.version>2.0.0.M4</boot.version>
+		<boot.version>2.0.0.RC2</boot.version>
 		<pebble-spring.version>2.4.0</pebble-spring.version>
 	</properties>
 
@@ -34,6 +29,10 @@
 			<name>Mitchell Bösecke</name>
 			<email>mitchellbosecke@gmail.com</email>
 		</developer>
+		<developer>
+                        <name>Rob Shepherd</name>
+                        <email>rgshepherd@gmail.com</email>
+                </developer>
 	</developers>
 
 	<build>
@@ -77,7 +76,15 @@
 				<artifactId>maven-release-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	<extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>2.10</version>
+            </extension>
+        </extensions>
+    </build>
+
 
 	<profiles>
 		<profile>
@@ -144,5 +151,11 @@
           <url>http://repo.spring.io/milestone</url>
       </repository>
   </repositories>
+<distributionManagement>
+        <repository>
+            <id>952_maven</id>
+            <url>dav:http://repo.952cloud.com/maven/952</url>
+        </repository>
+    </distributionManagement>
 
 </project>
